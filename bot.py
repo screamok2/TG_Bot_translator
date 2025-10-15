@@ -2,6 +2,7 @@ from sqlalchemy.testing.suite.test_reflection import users
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram import Update
 import  translations
+import API
 from telegram import ReplyKeyboardMarkup
 import Users
 from telegram.ext import (
@@ -122,7 +123,7 @@ async def export_words(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 if __name__ == "__main__":
-    TOKEN = "8482723120:AAEF2EoJilWLMwqyHrLTjdAc6II7Lv5ntMc"
+    TOKEN = API.bot
 
     app = ApplicationBuilder().token(TOKEN).build()
 
