@@ -24,6 +24,7 @@ class User(Base):
 # Создание таблиц
     Base.metadata.create_all(engine)
 
+
     @staticmethod
     def create_user(user_id: int, name: str, vocabular: dict = None):
         if vocabular is None:

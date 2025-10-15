@@ -11,6 +11,7 @@ import API
 googl_key = API.googl_key
 
 
+
 class Translator:
     def transl (word: str):
         url = f"https://translation.googleapis.com/language/translate/v2?key={googl_key}"

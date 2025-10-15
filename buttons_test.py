@@ -112,6 +112,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         deleted = user.delete_last_word()
         await update.message.reply_text(f"Удалено слово: {deleted}")
 
+
     elif text == "еще":
         return ReplyKeyboardMarkup(
             [["Добавить слово", "Показать слова"],

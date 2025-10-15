@@ -127,6 +127,7 @@ if __name__ == "__main__":
 
     app = ApplicationBuilder().token(TOKEN).build()
 
+
     # Диалоговый обработчик
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
