@@ -7,8 +7,8 @@ import Users
 from docx import Document
 import os
 import requests
-import API
-googl_key = API.googl_key
+
+googl_key = os.getenv("GOOGL_KEY")
 
 
 
