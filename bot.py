@@ -120,7 +120,7 @@ async def export_words(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_document(qq)
 
 
-if __name__ == "__main__":
+def run_bot():
     bot = os.getenv("BOT_TOKEN")
 
     app = ApplicationBuilder().token(bot).build()
