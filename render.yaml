@@ -9,8 +9,8 @@ services:
     envVars:
       - key: BOT_TOKEN
         sync: false
-        value: "<8482723120:AAEF2EoJilWLMwqyHrLTjdAc6II7Lv5ntMc>"
+        value: "8482723120:AAEF2EoJilWLMwqyHrLTjdAc6II7Lv5ntMc"
       - key: GOOGL_KEY
         sync: false
-        value: "<YAIzaSyAxMXr4w1IWFR-u0TCFmGzJS-8DTDyVBcU>"
+        value: "YAIzaSyAxMXr4w1IWFR-u0TCFmGzJS-8DTDyVBcU"
     region: oregon # Можно выбрать ближайший к тебе регион, например frankfurt
