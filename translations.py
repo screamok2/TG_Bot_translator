@@ -1,7 +1,7 @@
 from datetime import datetime, date, timedelta
 import re
 from time import sleep
-from google.cloud import translate_v2 as translate
+
 import deepl
 import Users
 from docx import Document
