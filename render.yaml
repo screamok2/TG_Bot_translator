@@ -1,0 +1,16 @@
+services:
+  - type: background
+    name: telegram-bot
+    env: python
+    # Указываем версию Python 3.11
+    pythonVersion: "3.11"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+        value: "<8482723120:AAEF2EoJilWLMwqyHrLTjdAc6II7Lv5ntMc>"
+      - key: GOOGL_KEY
+        sync: false
+        value: "<YAIzaSyAxMXr4w1IWFR-u0TCFmGzJS-8DTDyVBcU>"
+    region: oregon # Можно выбрать ближайший к тебе регион, например frankfurt
