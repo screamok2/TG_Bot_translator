@@ -61,17 +61,15 @@ async def translation(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     word = update.message.text
 
-    await update.message.reply_text(f"Ты ввел слово '{word}', перевожу...")
-
     meaning = translations.Translator.transl(word)
     if meaning.lower() == word.lower():
         await update.message.reply_text(f"Перевод не найден")
     else:
-        await update.message.reply_text(f"Перевод : {meaning}")
+        await update.message.reply_text(f"{meaning}")
 
         user.add_word(word, meaning)
         print(f"Word   '{word}'  added by {update.effective_user.name}")
-        await update.message.reply_text(f"слово '{word}', значение '{meaning}' добавлено в словарь ")
+
 
 async def show_words(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
