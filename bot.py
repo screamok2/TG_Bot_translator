@@ -3,6 +3,11 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram import Update
 import  translations
 import os
+import os
+import threading
+from fastapi import FastAPI
+import uvicorn
+from telegram.ext import ApplicationBuilder, CommandHandler
 from telegram import ReplyKeyboardMarkup
 import Users
 from telegram.ext import (
@@ -121,6 +126,7 @@ async def export_words(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def run_bot():
+    from telegram.ext import ApplicationBuilder, CommandHandler
     bot = os.getenv("BOT_TOKEN")
 
     app = ApplicationBuilder().token(bot).build()
@@ -153,3 +159,23 @@ def run_bot():
     app.add_handler(CommandHandler("export_words", export_words))
     print("Бот запущен...")
     app.run_polling()
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"status": "bot is running"}
+
+# --- Telegram bot setup ---
+async def start(update, context):
+    await update.message.reply_text("Бот работает!")
+
+
+
+if __name__ == "__main__":
+    # Запускаем бота в отдельном потоке
+    threading.Thread(target=run_bot).start()
+
+    # Запускаем FastAPI (Render требует открытый порт)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

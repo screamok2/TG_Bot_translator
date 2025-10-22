@@ -1,18 +1,32 @@
-from fastapi import FastAPI
-import threading
+# file: main.py
 import os
-from telegram.ext import ApplicationBuilder
+import threading
+from fastapi import FastAPI
+import uvicorn
+from telegram.ext import ApplicationBuilder, CommandHandler
 
 app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"status": "bot running"}
+    return {"status": "bot is running"}
+
+# --- Telegram bot setup ---
+async def start(update, context):
+    await update.message.reply_text("Бот работает!")
 
 def run_bot():
-    import bot  # запускаем бота в отдельном потоке
+    from telegram.ext import ApplicationBuilder, CommandHandler
+    TOKEN = os.getenv("BOT_TOKEN")
+    application = ApplicationBuilder().token(TOKEN).build()
+    application.add_handler(CommandHandler("start", start))
+    print("Бот запущен...")
+    application.run_polling()
 
 if __name__ == "__main__":
+    # Запускаем бота в отдельном потоке
     threading.Thread(target=run_bot).start()
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+
+    # Запускаем FastAPI (Render требует открытый порт)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
