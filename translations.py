@@ -1,8 +1,6 @@
 from datetime import datetime, date, timedelta
 import re
-from time import sleep
 
-import deepl
 import Users
 from docx import Document
 import os
